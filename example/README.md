@@ -20,8 +20,8 @@ $ export ARM_SUBSCRIPTION_ID="subscription-id"
 $ export ARM_TENANT_ID="tenant-id"
 
 $ terraform init
-$ terraform plan -out=tfplan
-$ terraform apply --auto-approve tfplan
+$ terraform plan -out tfplan.apply
+$ terraform apply -auto-approve tfplan.apply
 ```
 
 ### Destroy
@@ -34,5 +34,5 @@ $ export ARM_SUBSCRIPTION_ID="subscription-id"
 $ export ARM_TENANT_ID="tenant-id"
 
 $ terraform init
-$ terraform plan -destroy -out tfdestroy
-$ terraform apply -input=false -auto-approve tfdestroy
+$ terraform plan -destroy -out tfplan.destroy
+$ terraform apply -input=false -auto-approve tfplan.destroy

@@ -1,6 +1,6 @@
 # azure-terraform-vnet
 
-[![Build Status](https://travis-ci.org/Azure/terraform-azurerm-network.svg?branch=master)](https://travis-ci.org/Azure/terraform-azurerm-network)
+[![Build Status](https://travis-ci.org/N3tLiX/azure-terraform-vnet.svg?branch=master)](https://travis-ci.org/N3tLiX/azure-terraform-vnet)
 
 ## Create a simple VNET in Azure
 
