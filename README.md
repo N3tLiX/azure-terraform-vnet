@@ -1,7 +1,6 @@
 # azure-terraform-vnet
 
-[![Build Status](https://travis-ci.org/N3tLiX/azure-terraform-vnet.svg?branch=master)](https://travis-ci.org/N3tLiX/azure-terraform-vnet)
-
+[![Build Status](https://app.travis-ci.com/N3tLiX/azure-terraform-vnet.svg?token=zqBsce6sEvHGqTtKVRyh&branch=main)](https://app.travis-ci.com/N3tLiX/azure-terraform-vnet)
 ## Create a simple VNET in Azure
 
 This Terraform module deploys a Virtual Network in Azure with a subnet or a set of subnets.
