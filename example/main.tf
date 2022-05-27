@@ -22,7 +22,7 @@ data "azurerm_resource_group" "this" {
 }
 
 module "network" {
-  source              = "azure-terraform-vnet"
+  source              = "./../"
   vnet_name           = "vn-example"
   resource_group_name = data.azurerm_resource_group.this.name
   location            = data.azurerm_resource_group.this.location
