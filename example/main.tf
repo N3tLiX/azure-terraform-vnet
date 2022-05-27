@@ -101,25 +101,6 @@ module "network" {
   ]
 }
 
-variable "subscription_id" {
-  description = "(Required) Set to the Azure Client ID (Application Object ID)"
-  type        = string
-}
-
-variable "client_id" {
-  description = "(Required) Set to the Azure Client ID (Application Object ID)"
-  type        = string
-}
-
-variable "client_secret" {
-  description = "(Required) Set to the Azure Client ID (Application Object ID)."
-  type        = string
-}
-variable "tenant_id" {
-  description = "(Required) Set to the Azure Tenant ID."
-  type        = string
-}
-
 output "network" {
   description = "Network deployment output."
   value       = module.network.this
