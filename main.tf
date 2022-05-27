@@ -42,8 +42,8 @@ resource "azurerm_subnet" "this" {
   for_each = { for subnet in var.subnets : subnet.name => subnet }
 
   name                                           = each.key
-  resource_group_name                            = data.azurerm_virtual_network.this.resource_group_name
-  virtual_network_name                           = data.azurerm_virtual_network.this.name
+  resource_group_name                            = azurerm_virtual_network.this.resource_group_name
+  virtual_network_name                           = azurerm_virtual_network.this.name
   address_prefixes                               = each.value.address_prefixes
   enforce_private_link_endpoint_network_policies = each.value.enforce_private_link_endpoint_network_policies
   enforce_private_link_service_network_policies  = each.value.enforce_private_link_service_network_policies
