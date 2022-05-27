@@ -10,19 +10,13 @@ output "vnet_id" {
 
 output "vnet_dns" {
   description = "Specifies the configured DNS servers."
-
+  value       = azurerm_virtual_network.this.dns_servers
 }
 
 output "vnet_address_space" {
   description = "Conatins a list of address spaces of the virtual network."
   value       = azurerm_virtual_network.this.address_space
 }
-
-output "subnet_address_prefixes" {
-  description = "Contains a list of the address prefixes of the subnets."
-  value       = module.subnets.address_prefixes
-}
-
 
 output "subnet_names" {
   description = "Contains a list of the resource name of the subnets."

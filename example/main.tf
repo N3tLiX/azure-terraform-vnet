@@ -22,7 +22,7 @@ data "azurerm_resource_group" "this" {
 }
 
 module "network" {
-  source              = "azure-terraform-vnet"
+  source              = "github.com/N3tLiX/modules//vnet"
   vnet_name           = "vn-example"
   resource_group_name = data.azurerm_resource_group.this.name
   location            = data.azurerm_resource_group.this.location
@@ -99,25 +99,6 @@ module "network" {
       }
     }
   ]
-}
-
-variable "subscription_id" {
-  description = "(Required) Set to the Azure Client ID (Application Object ID)"
-  type        = string
-}
-
-variable "client_id" {
-  description = "(Required) Set to the Azure Client ID (Application Object ID)"
-  type        = string
-}
-
-variable "client_secret" {
-  description = "(Required) Set to the Azure Client ID (Application Object ID)."
-  type        = string
-}
-variable "tenant_id" {
-  description = "(Required) Set to the Azure Tenant ID."
-  type        = string
 }
 
 output "network" {
