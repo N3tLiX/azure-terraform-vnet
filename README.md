@@ -1,12 +1,11 @@
 # azure-terraform-vnet
 
-[![Build Status](https://app.travis-ci.com/N3tLiX/azure-terraform-vnet.svg?token=zqBsce6sEvHGqTtKVRyh&branch=main)](https://app.travis-ci.com/N3tLiX/azure-terraform-vnet)
 ## Create a simple VNET in Azure
 
 This Terraform module deploys a Virtual Network in Azure with a subnet or a set of subnets.
 
 The module does not create or expose a security group or a route table.
-You could use https://github.com/n3tlix/terraform-azurerm-network to assign network security group and routing tables to the subnets.
+You could use https://github.com/n3tlix/azure-terraform-network to assign network security group and routing tables to the subnets.
 
 ## Usage in Terraform 0.13
 ```hcl
