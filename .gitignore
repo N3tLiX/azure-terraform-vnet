@@ -34,4 +34,4 @@ override.tf.json
 *tfplan*
 
 # Include MacOS specific files
-.DS_STORE
+.DS_Store
