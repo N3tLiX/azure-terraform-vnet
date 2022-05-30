@@ -38,6 +38,12 @@ resource "azurerm_virtual_network_dns_servers" "this" {
   dns_servers        = var.dns_servers
 }
 
+resource "azurerm_virtual_network_dns_servers" "this" {
+  count              = dns_servers != [] ? 1 : 0
+  virtual_network_id = azurerm_virtual_network.example.id
+  dns_servers        = ["10.7.7.2", "10.7.7.7", "10.7.7.1"]
+}
+
 resource "azurerm_subnet" "this" {
   for_each = { for subnet in var.subnets : subnet.name => subnet }
 

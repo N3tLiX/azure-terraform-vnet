@@ -25,7 +25,7 @@ variable "dns_servers" {
 }
 
 variable "subnets" {
-  description = "(Required) Manages a subnet. Subnets represent network segments within the IP space defined by the virtual networ (https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet)."
+  description = "(Required) Manages a subnet. Subnets represent network segments within the IP space defined by the virtual network (https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet)."
   type = list(object({
     name                                           = string
     address_prefixes                               = list(string)
