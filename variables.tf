@@ -40,15 +40,14 @@ variable "subnets" {
       })
     })
   }))
-  default = list(object({
+  default = {
     name                                           = null
     address_prefixes                               = null
     enforce_private_link_endpoint_network_policies = true
     enforce_private_link_service_network_policies  = false
     service_endpoints                              = null
     deligation                                     = null
-  }))
-
+  }
 }
 
 variable "tags" {
