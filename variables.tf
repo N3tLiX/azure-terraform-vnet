@@ -26,28 +26,20 @@ variable "dns_servers" {
 
 variable "subnets" {
   description = "(Required) Manages a subnet. Subnets represent network segments within the IP space defined by the virtual network (https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet)."
-  # type = list(object({
-  #   name                                           = string
-  #   address_prefixes                               = list(string)
-  #   enforce_private_link_endpoint_network_policies = bool
-  #   enforce_private_link_service_network_policies  = bool
-  #   service_endpoints                              = list(string)
-  #   deligation = object({
-  #     name = string
-  #     service_delegation = object({
-  #       actions = list(string)
-  #       name    = string
-  #     })
-  #   })
-  # }))
-  # default = {
-  #   name                                           = null
-  #   address_prefixes                               = null
-  #   enforce_private_link_endpoint_network_policies = true
-  #   enforce_private_link_service_network_policies  = false
-  #   service_endpoints                              = []
-  #   deligation                                     = {}
-  # }
+  type = list(object({
+    name                                           = string
+    address_prefixes                               = list(string)
+    enforce_private_link_endpoint_network_policies = bool
+    enforce_private_link_service_network_policies  = bool
+    service_endpoints                              = list(string)
+    deligation = object({
+      name = string
+      service_delegation = object({
+        actions = list(string)
+        name    = string
+      })
+    })
+  }))
 }
 
 variable "tags" {

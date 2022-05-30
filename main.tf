@@ -49,7 +49,7 @@ resource "azurerm_subnet" "this" {
   enforce_private_link_service_network_policies  = each.value.enforce_private_link_service_network_policies
   service_endpoints                              = each.value.service_endpoints != null ? each.value.service_endpoints : null
   dynamic "delegation" {
-    for_each = each.value.deligation != null ? [1] : []
+    for_each = each.value.deligation.name != null ? [1] : []
     content {
       name = each.value.deligation.name
       service_delegation {
