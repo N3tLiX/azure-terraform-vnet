@@ -38,9 +38,52 @@ resource "azurerm_virtual_network_dns_servers" "this" {
   dns_servers        = var.dns_servers
 }
 
-resource "azurerm_subnet" "this" {
-  for_each = { for subnet in var.subnets : subnet.name => subnet }
+module "network" {
+  for_each = { for subnet in var.subnets : subnet.name => subnet
+    if subnet.name == "GatewaySubnet" || subnet.name == "AzureFirewallSubnet" || subnet.name == "AzureFirewallManagementSubnet" || subnet.name == "AzureBastionSubnet" || subnet.name == "RouteServerSubnet"
+  }
+  source                 = "Azure/naming/azurerm"
+  version                = "0.1.1"
+  suffix                 = [replace(replace(join("", (each.value.address_prefixes)), ".", "_"), "/", "__")]
+  unique-length          = 8
+  unique-include-numbers = true
+}
 
+resource "azurerm_subnet" "this" {
+  # for_each = { for subnet in var.subnets : subnet.name => subnet }
+  for_each = { for subnet in var.subnets : subnet.name => subnet
+    if subnet.name != "GatewaySubnet" || subnet.name == "AzureFirewallSubnet" || subnet.name == "AzureFirewallManagementSubnet" || subnet.name == "AzureBastionSubnet" || subnet.name == "RouteServerSubnet"
+  }
+  name                                           = module.network[each.key].subnet.name_unique
+  resource_group_name                            = azurerm_virtual_network.this.resource_group_name
+  virtual_network_name                           = azurerm_virtual_network.this.name
+  address_prefixes                               = each.value.address_prefixes
+  enforce_private_link_endpoint_network_policies = each.value.enforce_private_link_endpoint_network_policies
+  enforce_private_link_service_network_policies  = each.value.enforce_private_link_service_network_policies
+  service_endpoints                              = each.value.service_endpoints != null ? each.value.service_endpoints : null
+  dynamic "delegation" {
+    for_each = each.value.deligation.name != null ? [1] : []
+    content {
+      name = each.value.deligation.name
+      service_delegation {
+        actions = each.value.deligation.service_delegation.actions
+        name    = each.value.deligation.service_delegation.name
+      }
+    }
+  }
+  lifecycle {
+    ignore_changes = [
+      service_endpoints,
+      service_endpoint_policy_ids,
+    ]
+  }
+}
+
+resource "azurerm_subnet" "services" {
+  # for_each = { for subnet in var.subnets : subnet.name => subnet }
+  for_each = { for subnet in var.subnets : subnet.name => subnet
+    if subnet.name == "GatewaySubnet" || subnet.name == "AzureFirewallSubnet" || subnet.name == "AzureFirewallManagementSubnet" || subnet.name == "AzureBastionSubnet" || subnet.name == "RouteServerSubnet"
+  }
   name                                           = each.key
   resource_group_name                            = azurerm_virtual_network.this.resource_group_name
   virtual_network_name                           = azurerm_virtual_network.this.name
@@ -65,3 +108,4 @@ resource "azurerm_subnet" "this" {
     ]
   }
 }
+

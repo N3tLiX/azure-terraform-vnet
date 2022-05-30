@@ -27,7 +27,7 @@ output "subnet_names" {
 
 output "subnet_names_services" {
   description = "Contains a list of the resource name of the azure reserved subnets."
-  value = [for subnet in azurerm_subnet.this : subnet.name
+  value = [for subnet in azurerm_subnet.services : subnet.name
     if subnet.name == "GatewaySubnet" || subnet.name == "AzureFirewallSubnet" || subnet.name == "AzureFirewallManagementSubnet" || subnet.name == "AzureBastionSubnet" || subnet.name == "RouteServerSubnet"
   ]
 }
