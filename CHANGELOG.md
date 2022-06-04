@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [0.0.1] - 2022-06-04
+### Changed 
+- Updated README.md
+
 
 [Unreleased]: https://github.com/N3tLiX/azure-terraform-vnet/compare/0.0.1...HEAD
 
