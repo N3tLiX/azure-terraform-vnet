@@ -35,3 +35,4 @@ override.tf.json
 
 # Include MacOS specific files
 .DS_Store
+*.secrets.conf
